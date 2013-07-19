@@ -78,7 +78,7 @@ def generate_contest(problem_names = [os.curdir], template = None, template_vars
 
 def make_good(txt):
     t = txt.split('\n')
-    return '\n'.join(['~' if x == '' and i != len(t) - 1 else x for i, x in enumerate(t)])
+    return '\n'.join(['~' if x == '' and i != len(t) - 1 else x for i, x in enumerate(t)]).replace(" ", "~")
 
 class LatexConstructor:
     """

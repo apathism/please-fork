@@ -1,5 +1,6 @@
 from .exporter.ejudge_exporter import EjudgeExporter
 from .exporter.pcms2_exporter import PCMS2Exporter
+from .exporter.automation_exporter import AutomationExporter
 
 servers = {
   'ejudge' : EjudgeExporter(
@@ -27,5 +28,9 @@ servers = {
       'host' : r'Z:\problems'
     },
     libs = []
+  ),
+  'automation' : AutomationExporter(
+      network = {},
+      libs = []
   )
 }
