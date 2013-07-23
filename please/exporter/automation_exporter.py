@@ -82,15 +82,19 @@ class AutomationExporter(GenericExporter):
         self.clean_after()
 
     def clean_after(self):
-        subprocess.call(["please", "clean"], cwd=self.problems[0], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        null_file = open(os.devnull, 'w')
+        subprocess.call(["please", "clean"], cwd=self.problems[0], stdout=null_file, stderr=null_file)
+        null_file.close()
 
     def get_samples_count(self):
+        null_file = open(os.devnull, 'w')
         self.clean_after()
         subprocess.call(["please", "generate", "tests", "with", "tag", "sample"], cwd=self.problems[0],
-                        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                        stdout=null_file, stderr=null_file)
         result = len(os.listdir(os.path.join(self.problems[0], '.tests'))) // 2
-        subprocess.call(["please", "build", "all"], cwd=self.problems[0],
-                        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.call(["please", "generate", "tests"], cwd=self.problems[0],
+                        stdout=null_file, stderr=null_file)
+        null_file.close()
         return result
 
     def get_config(self, conf):
