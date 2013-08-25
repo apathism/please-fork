@@ -76,9 +76,20 @@ def generate_contest(problem_names = [os.curdir], template = None, template_vars
     log.info("PDF %s was created successfully", os.path.splitext(new_tex_name)[0] + ".pdf")
     return pdf_out_name
 
+def spaces_replace(string):
+    non_space = True
+    symbols = []
+    for symbol in string:
+        if symbol == " " and non_space:
+            symbols.append("~")
+        else:
+            non_space = False
+            symbols.append(symbol)
+    return "".join(symbols)
+
 def make_good(txt):
     t = txt.split('\n')
-    return '\n'.join(['~' if x == '' and i != len(t) - 1 else x for i, x in enumerate(t)]).replace(" ", "~")
+    return '\n'.join(['~' if x == '' and i != len(t) - 1 else spaces_replace(x) for i, x in enumerate(t)])
 
 class LatexConstructor:
     """
