@@ -34,7 +34,7 @@ entry_points = {
 install_requires = [
     'psutil',
     'colorama',
-    'HTML.py==0.04',
+#    'HTML.py==0.04',
 ]
 
 dependency_links = [

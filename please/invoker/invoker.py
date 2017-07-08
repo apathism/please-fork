@@ -194,7 +194,7 @@ def invoke(handler, limits):
             pass
 
         try:
-            cpu_time = sum(list(handler.get_cpu_times()))
+            cpu_time = sum(list(handler.cpu_times()))
             real_time = time.time() - start_time
             used_memory = max(used_memory, __get_memory_info(handler))
         except psutil.NoSuchProcess:
@@ -298,4 +298,4 @@ __current_platform = platform_detector.get_platform()
 
 
 def __get_memory_info(handler):
-    return handler.get_memory_info()[0]
+    return handler.memory_info()[0]

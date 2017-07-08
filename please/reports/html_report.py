@@ -1,4 +1,4 @@
-import HTML
+from . import HTML
 
 class HtmlReporter:
     def __init__(self):
